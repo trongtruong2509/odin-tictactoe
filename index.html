@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./assets/themify-icons-font/themify-icons/themify-icons.css"> -->
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="leader-board">
+      <div class="score">
+        <div class="player-container">
+          <label for="" id="player1" class="player-name" >TT</label>
+          <div class="score-field" id="player1-score">0</div>
+        </div>
+        <div class="player-container">
+          <label for="" id="player2" class="player-name">AI</label>
+          <div class="score-field" id="player2-score">0</div>
+        </div>
+      </div>
+      <button id="restart" class="restart-btn">Restart</button>
+    </div>
+    <div class="main-content">
+      <div class="game-board">
+        <div id="cell-0" class="cell"></div>
+        <div id="cell-1" class="cell"></div>
+        <div id="cell-2" class="cell"></div>
+        <div id="cell-3" class="cell"></div>
+        <div id="cell-4" class="cell"></div>
+        <div id="cell-5" class="cell"></div>
+        <div id="cell-6" class="cell"></div>
+        <div id="cell-7" class="cell"></div>
+        <div id="cell-8" class="cell"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal">
+  <div class="modal-content">
+    <header class="modal-header">
+      <p id="game-title" class="title"></p>
+    </header>
+    <div class="main-content">
+     <p id="winnerName" class="player-name"></p>
+    </div>    
+  </div>
+</div>
+</body>
+<script src="myscripts.js"></script>
+</html>

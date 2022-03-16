@@ -1,0 +1,266 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --primary-color: #eeeeee;
+    --primary-color-light: #ffffff;
+    --primary-color-dark: #bcbcbc;
+    --secondary-color: #2196f3;
+    --secondary-color-light: #6ec6ff;
+    --secondary-color-dark: #0069c0;
+
+    --border-radius-value: 1rem;
+
+	--shadow-normal: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+html {
+    font-family: "Roboto", sans-serif;
+    min-height: 100%; /* Look, it's not fixed anymore! */
+
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+
+   
+}
+
+.container {
+    height: 40rem;
+    width: 40rem;
+    border-radius: var(--border-radius-value);
+    border: 1px solid var(--primary-color-dark);
+
+    &.modal-active {
+        overflow: hidden;
+        -webkit-filter: blur(2px) grayscale(50%);
+    }
+
+    .leader-board {
+        height: 30%;
+        background-color: var(--primary-color);
+        border-radius: var(--border-radius-value);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .score {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 4rem;
+            width: 100%;
+            height: auto;
+
+            .player-container {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+
+                .player-name {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    color: var(--secondary-color-light);
+                }
+
+                .score-field {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 4rem;
+                    height: 2rem;
+                    color: var(--secondary-color);
+                    font-size: 1.5rem;
+                    // background-color: var(--primary-color-dark);
+                    border: 1px solid var(--primary-color-dark);
+                }
+            }
+        }
+
+        .restart-btn {
+            width: 20rem;
+            height: 3rem;
+            color: var(--primary-color-light);
+            background-color: var(--secondary-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 1rem;
+
+            &:hover {
+                background-color: var(--secondary-color-dark);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .main-content {
+        height: 70%;
+        // padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--border-radius-value);
+        // margin: auto;
+        background-color: var(--primary-color);
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 6rem);
+            grid-template-rows: repeat(3, 6rem);
+            gap: 0.3rem;
+            background-color: var(--primary-color-dark);
+            
+            .cell {
+                background-color: var(--primary-color);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 4rem;
+                font-weight: 600;
+                color: var(--secondary-color);
+                cursor: pointer;
+                
+                &:hover {
+                    background-color: var(--primary-color-light);
+                }
+            }
+        }
+    }
+}
+
+
+/* The Modal (background) */
+#modal {
+    // visibility: visible;
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+
+    width: 100%; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: transparent;
+    transform:scale(0);
+    
+    display: flex;
+    justify-content: center;
+
+    /* Modal Content */
+    .modal-content {
+        background-color: transparent;
+        margin: auto;
+        padding: 0.5rem;
+        width: auto;
+        max-width: 70%;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 6rem;
+        color: var(--secondary-color);
+    } 
+
+    &.modal-appear {
+            transform:scaleY(.01) scaleX(0);
+            animation:unfoldIn 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+            
+            .modal-content {
+                transform:scale(0);
+                animation: zoomIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+            }
+    }
+
+    &.out {
+        transform:scale(1);
+        animation:unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        
+        .modal-content {
+            animation: zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        }
+      
+    }
+}
+
+.game-over {
+    color: var(--secondary-color-dark);
+}
+
+.spot-appear {
+    animation-duration: 1s;
+    animation-name: appear;
+    // transition: all 2s ease-out 0.5s;
+}
+  
+@keyframes appear {
+    0% {
+        transform:scale(1.5);
+    }
+    100% {
+        transform:scale(1);
+    }
+}
+
+@keyframes unfoldIn {
+    0% {
+      transform:scaleY(.005) scaleX(0);
+    }
+    50% {
+      transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+      transform:scaleY(1) scaleX(1);
+    }
+  }
+  
+@keyframes unfoldOut {
+    0% {
+        transform:scaleY(1) scaleX(1);
+    }
+    50% {
+        transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+        transform:scaleY(.005) scaleX(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform:scale(0);
+    }
+    100% {
+        transform:scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform:scale(1);
+    }
+    100% {
+        transform:scale(0);
+    }
+}
